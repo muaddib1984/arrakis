@@ -1,0 +1,608 @@
+options:
+  parameters:
+    author: muaddib
+    catch_exceptions: 'True'
+    category: '[GRC Hier Blocks]'
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: remote visualizatino for space folder application
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: guild_navigator39
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: ''
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 8]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: avg
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 0,4,1,2
+    label: AVERAGE/RAW
+    label0: AVERAGE
+    label1: RAW
+    label2: ''
+    label3: ''
+    label4: ''
+    labels: '[]'
+    num_opts: '2'
+    option0: '0'
+    option1: '1'
+    option2: '2'
+    option3: '3'
+    option4: '4'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '0'
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [888, 380]
+    rotation: 0
+    state: enabled
+- name: fft_length
+  id: variable
+  parameters:
+    comment: ''
+    value: 256 * int(pow(2, np.ceil(np.log(samp_ratio)/np.log(2))))
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 292]
+    rotation: 0
+    state: enabled
+- name: rf_bw_gui
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 0,2,1,2
+    label: RF BANDWIDTH
+    label0: 1Msps
+    label1: 1.92Msps
+    label2: 5Msps
+    label3: 10Msps
+    label4: 20Msps
+    labels: '[]'
+    num_opts: '5'
+    option0: 1e6
+    option1: 1.92e6
+    option2: 5e6
+    option3: 10e6
+    option4: 20e6
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: real
+    value: rf_bw
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [416, 284]
+    rotation: 0
+    state: enabled
+- name: rf_freq_gui
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 1,0,1,2
+    label: RF FREQ
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: 64e6
+    step: 100e3
+    stop: 6e9
+    value: 750e6
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 412]
+    rotation: 0
+    state: enabled
+- name: rf_gain_gui
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: 0,0,1,2
+    label: RF GAIN
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '80'
+    value: '50'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [160, 412]
+    rotation: 0
+    state: enabled
+- name: samp_rate_gui
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 1,2,1,2
+    label: SAMPLE RATE
+    label0: 1Msps
+    label1: 5Msps
+    label2: 5Msps
+    label3: 20Msps
+    label4: 40Msps
+    labels: '[]'
+    num_opts: '5'
+    option0: 1e6
+    option1: 5e6
+    option2: 10e6
+    option3: 20e6
+    option4: 40e6
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: real
+    value: samp_rate
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 284]
+    rotation: 0
+    state: enabled
+- name: samp_ratio
+  id: variable
+  parameters:
+    comment: ''
+    value: samp_rate/1E6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 180]
+    rotation: 0
+    state: enabled
+- name: vec_per_sec
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 356]
+    rotation: 0
+    state: enabled
+- name: vps
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 1,4,1,2
+    label: VECTORS PER SECOND
+    label0: '1'
+    label1: '2'
+    label2: '4'
+    label3: '8'
+    label4: '16'
+    labels: '[]'
+    num_opts: '5'
+    option0: '1'
+    option1: '2'
+    option2: '4'
+    option3: '8'
+    option4: '16'
+    options: '[0, 1, 2]'
+    orient: Qt.QVBoxLayout
+    type: int
+    value: '1'
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [704, 380]
+    rotation: 0
+    state: enabled
+- name: control_ip
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: XMLRPC SERVER IP
+    short_id: x
+    type: str
+    value: 127.0.0.1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [608, 4]
+    rotation: 0
+    state: enabled
+- name: control_port
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: XMLRPC SERVER PORT
+    short_id: X
+    type: intx
+    value: '8002'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [760, 4]
+    rotation: 0
+    state: enabled
+- name: import_0
+  id: import
+  parameters:
+    alias: ''
+    comment: ''
+    imports: import numpy as np
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 244]
+    rotation: 0
+    state: enabled
+- name: qtgui_vector_sink_f_0
+  id: qtgui_vector_sink_f
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    average: '1.0'
+    color1: '"cyan"'
+    color10: '"dark blue"'
+    color2: '"red"'
+    color3: '"green"'
+    color4: '"black"'
+    color5: '"cyan"'
+    color6: '"magenta"'
+    color7: '"yellow"'
+    color8: '"dark red"'
+    color9: '"dark green"'
+    comment: ''
+    grid: 'False'
+    gui_hint: 2,0,5,6
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    name: '""'
+    nconnections: '1'
+    ref_level: '100'
+    showports: 'True'
+    update_time: '0.10'
+    vlen: fft_length
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    x_axis_label: '"x-Axis"'
+    x_start: '0'
+    x_step: '1.0'
+    x_units: '""'
+    y_axis_label: '"y-Axis"'
+    y_units: '""'
+    ymax: '10'
+    ymin: '-140'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [784, 164.0]
+    rotation: 0
+    state: enabled
+- name: rf_bw
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: RF BANDWITDH
+    short_id: b
+    type: eng_float
+    value: 10e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1168, 4]
+    rotation: 0
+    state: enabled
+- name: rf_freq
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: RF FREQUENCY
+    short_id: f
+    type: eng_float
+    value: 750e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [928, 4]
+    rotation: 0
+    state: enabled
+- name: rf_gain
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: RF GAIN
+    short_id: g
+    type: eng_float
+    value: '50.0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1064, 4]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: SAMPLE RATE
+    short_id: s
+    type: eng_float
+    value: 10e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [200, 4]
+    rotation: 0
+    state: enabled
+- name: xmlrpc_client_0
+  id: xmlrpc_client
+  parameters:
+    addr: 127.0.0.1
+    alias: ''
+    callback: set_rf_gain
+    comment: ''
+    port: '8000'
+    variable: rf_gain_gui
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [160, 540]
+    rotation: 0
+    state: enabled
+- name: xmlrpc_client_0_0
+  id: xmlrpc_client
+  parameters:
+    addr: 127.0.0.1
+    alias: ''
+    callback: set_rf_freq
+    comment: ''
+    port: '8000'
+    variable: rf_freq_gui
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [288, 540]
+    rotation: 0
+    state: enabled
+- name: xmlrpc_client_0_0_0
+  id: xmlrpc_client
+  parameters:
+    addr: 127.0.0.1
+    alias: ''
+    callback: set_rf_bw
+    comment: ''
+    port: '8000'
+    variable: rf_bw_gui
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [416, 540]
+    rotation: 0
+    state: enabled
+- name: xmlrpc_client_0_0_0_0
+  id: xmlrpc_client
+  parameters:
+    addr: 127.0.0.1
+    alias: ''
+    callback: set_samp_rate
+    comment: ''
+    port: '8000'
+    variable: samp_rate_gui
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 540]
+    rotation: 0
+    state: enabled
+- name: xmlrpc_client_0_0_0_0_0
+  id: xmlrpc_client
+  parameters:
+    addr: 127.0.0.1
+    alias: ''
+    callback: set_samp_rate
+    comment: ''
+    port: '8001'
+    variable: samp_rate_gui
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [552, 636]
+    rotation: 0
+    state: enabled
+- name: xmlrpc_client_0_0_0_0_0_0
+  id: xmlrpc_client
+  parameters:
+    addr: 127.0.0.1
+    alias: ''
+    callback: set_vec_per_sec
+    comment: ''
+    port: '8001'
+    variable: vps
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [704, 636]
+    rotation: 0
+    state: enabled
+- name: xmlrpc_client_0_0_0_0_0_0_0
+  id: xmlrpc_client
+  parameters:
+    addr: 127.0.0.1
+    alias: ''
+    callback: set_avg
+    comment: ''
+    port: '8001'
+    variable: avg
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [888, 636]
+    rotation: 0
+    state: enabled
+- name: xmlrpc_serv_ip
+  id: xmlrpc_server
+  parameters:
+    addr: 127.0.0.1
+    alias: ''
+    comment: ''
+    port: control_port
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 116]
+    rotation: 0
+    state: enabled
+- name: zeromq_sub_source_0
+  id: zeromq_sub_source
+  parameters:
+    address: '"tcp://"+str(zmq_in_ip)+":"+str(zmq_in_port)'
+    affinity: ''
+    alias: ''
+    comment: ''
+    hwm: '-1'
+    key: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    pass_tags: 'True'
+    timeout: '100'
+    type: float
+    vlen: fft_length
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [160, 156]
+    rotation: 0
+    state: enabled
+- name: zmq_in_ip
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ZMQ IN IP ADDR
+    short_id: z
+    type: str
+    value: 127.0.0.1
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [328, 4]
+    rotation: 0
+    state: enabled
+- name: zmq_in_port
+  id: parameter
+  parameters:
+    alias: ''
+    comment: ''
+    hide: none
+    label: ZMQ IN IP PORT
+    short_id: Z
+    type: ''
+    value: '5001'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [472, 4]
+    rotation: 0
+    state: enabled
+
+connections:
+- [zeromq_sub_source_0, '0', qtgui_vector_sink_f_0, '0']
+
+metadata:
+  file_format: 1
