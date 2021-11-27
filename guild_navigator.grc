@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: guild_navigator39
+    id: guild_navigator
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -38,8 +38,8 @@ blocks:
     comment: ''
     gui_hint: 0,4,1,2
     label: AVERAGE/RAW
-    label0: AVERAGE
-    label1: RAW
+    label0: RAW
+    label1: AVERAGED
     label2: ''
     label3: ''
     label4: ''
@@ -102,6 +102,41 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [416, 284]
+    rotation: 0
+    state: disabled
+- name: rf_bw_gui
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 0,2,1,2
+    label: RF BANDWIDTH
+    label0: 1Msps
+    label1: 1.92Msps
+    label2: 5Msps
+    label3: 10Msps
+    label4: 20Msps
+    labels: '[''1.02MHz'', ''1.54MHz'', ''1.79MHz'', ''1.92MHz'', ''2.05MHz'', ''2.16MHz'',
+      ''2.56MHz'', ''2.88MHz'', ''3.2MHz'', ''5.0MHz'', ''10.0MHz'', ''15.0MHz'',''20MHz'',
+      ''25.0MHz'', ''30.0MHz'', ''35.0MHz'', ''40.0MHz'', ''45.0MHz'', ''50.0MHz'',
+      ''55.0MHz'']'
+    num_opts: '0'
+    option0: 1e6
+    option1: 1.92e6
+    option2: 5e6
+    option3: 10e6
+    option4: 20e6
+    options: '[1024000.0, 1536000.0, 1792000.0, 1920000.0, 2048000.0, 2160000.0, 2560000.0,
+      2880000.0, 3200000.0, 5000000.0, 10000000.0, 15000000.0,20000000.0, 25000000.0,
+      30000000.0, 35000000.0, 40000000.0, 45000000.0, 50000000.0, 55000000.0]'
+    orient: Qt.QVBoxLayout
+    type: real
+    value: rf_bw
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [392, 324.0]
     rotation: 0
     state: enabled
 - name: rf_freq_gui
@@ -174,6 +209,62 @@ blocks:
     bus_source: false
     bus_structure: null
     coordinate: [552, 284]
+    rotation: 0
+    state: disabled
+- name: samp_rate_gui
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Sample Rate
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: 200e3
+    step: 500e3
+    stop: 56e6
+    value: samp_rate
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [544, 356.0]
+    rotation: 0
+    state: disabled
+- name: samp_rate_gui
+  id: variable_qtgui_chooser
+  parameters:
+    comment: ''
+    gui_hint: 1,2,1,2
+    label: SAMPLE RATE
+    label0: 1Msps
+    label1: 5Msps
+    label2: 5Msps
+    label3: 20Msps
+    label4: 40Msps
+    labels: '[''1.02MHz'', ''1.54MHz'', ''1.79MHz'', ''1.92MHz'', ''2.05MHz'', ''2.16MHz'',
+      ''2.56MHz'', ''2.88MHz'', ''3.2MHz'', ''5.0MHz'', ''10.0MHz'', ''15.0MHz'',''20MHz'',
+      ''25.0MHz'', ''30.0MHz'', ''35.0MHz'', ''40.0MHz'', ''45.0MHz'', ''50.0MHz'',
+      ''55.0MHz'']'
+    num_opts: '0'
+    option0: 1e6
+    option1: 5e6
+    option2: 10e6
+    option3: 20e6
+    option4: 40e6
+    options: '[1024000.0, 1536000.0, 1792000.0, 1920000.0, 2048000.0, 2160000.0, 2560000.0,
+      2880000.0, 3200000.0, 5000000.0, 10000000.0, 15000000.0,20000000.0, 25000000.0,
+      30000000.0, 35000000.0, 40000000.0, 45000000.0, 50000000.0, 55000000.0]'
+    orient: Qt.QVBoxLayout
+    type: real
+    value: samp_rate
+    widget: combo_box
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [544, 324.0]
     rotation: 0
     state: enabled
 - name: samp_ratio
@@ -393,7 +484,7 @@ blocks:
     label: RF GAIN
     short_id: g
     type: eng_float
-    value: '50.0'
+    value: '20.0'
   states:
     bus_sink: false
     bus_source: false
@@ -410,7 +501,7 @@ blocks:
     label: SAMPLE RATE
     short_id: s
     type: eng_float
-    value: 10e6
+    value: 20e6
   states:
     bus_sink: false
     bus_source: false
@@ -519,7 +610,7 @@ blocks:
   parameters:
     addr: 127.0.0.1
     alias: ''
-    callback: set_avg
+    callback: set_avg_on_off
     comment: ''
     port: '8001'
     variable: avg

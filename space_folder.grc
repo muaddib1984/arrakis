@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: no_gui
     hier_block_src_path: '.:'
-    id: space_folder39
+    id: space_folder
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -32,7 +32,19 @@ options:
     state: enabled
 
 blocks:
-- name: fft_length
+- name: avg_on_off
+  id: variable
+  parameters:
+    comment: ''
+    value: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [344, 348.0]
+    rotation: 0
+    state: enabled
+- name: fft_len
   id: variable
   parameters:
     comment: ''
@@ -65,7 +77,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [480, 252]
+    coordinate: [584, 124.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_mag_squared_0
@@ -76,12 +88,12 @@ blocks:
     comment: Compute power
     maxoutbuf: '0'
     minoutbuf: '0'
-    vlen: fft_length
+    vlen: fft_len
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [872, 324]
+    coordinate: [1000, 204.0]
     rotation: 0
     state: enabled
 - name: blocks_integrate_xx_0
@@ -94,12 +106,12 @@ blocks:
     maxoutbuf: '0'
     minoutbuf: '0'
     type: float
-    vlen: fft_length
+    vlen: fft_len
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1048, 316]
+    coordinate: [1016, 436.0]
     rotation: 0
     state: enabled
 - name: blocks_keep_one_in_n_0
@@ -107,38 +119,123 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    comment: "only keep 1 vector for every so many.\nUsing the sample rate and fft\
-      \ length \nwe can put in a # of vectors per second as an input.\nThis is a way\
-      \ to limit the output data rate needed to \nplot spectrum on the remote control\
-      \ side"
+    comment: "Using the sample rate and fft length \nwe can put in a # of vectors\
+      \ per second as an input.\nThis is a way to limit the output data rate needed\
+      \ to \nplot spectrum on the remote control side."
     maxoutbuf: '0'
     minoutbuf: '0'
-    n: int(round(samp_rate/fft_length/vec_per_sec))
+    n: int(round(samp_rate/fft_len/vec_per_sec))
     type: complex
-    vlen: fft_length
+    vlen: fft_len
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [480, 316]
+    coordinate: [568, 196.0]
     rotation: 0
     state: enabled
+- name: blocks_moving_average_xx_0
+  id: blocks_moving_average_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    length: '1'
+    max_iter: '16'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: '1'
+    type: float
+    vlen: fft_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [544, 348.0]
+    rotation: 0
+    state: true
+- name: blocks_moving_average_xx_0_0
+  id: blocks_moving_average_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    length: '16'
+    max_iter: '4000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    scale: 1/16
+    type: float
+    vlen: fft_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [544, 516.0]
+    rotation: 0
+    state: true
 - name: blocks_nlog10_ff_0
   id: blocks_nlog10_ff
   parameters:
     affinity: ''
     alias: ''
     comment: ''
-    k: 10*np.log10(1.0/fft_length)
+    k: 10*np.log10(1.0/fft_len)
     maxoutbuf: '0'
     minoutbuf: '0'
     n: '10'
-    vlen: fft_length
+    vlen: fft_len
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1216, 308]
+    coordinate: [1216, 428.0]
+    rotation: 0
+    state: enabled
+- name: blocks_selector_0
+  id: blocks_selector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    enabled: 'True'
+    input_index: '0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '1'
+    num_outputs: '2'
+    output_index: avg_on_off
+    showports: 'True'
+    type: float
+    vlen: fft_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 412.0]
+    rotation: 0
+    state: enabled
+- name: blocks_selector_0_0
+  id: blocks_selector
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    enabled: 'True'
+    input_index: avg_on_off
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    num_outputs: '1'
+    output_index: '0'
+    showports: 'True'
+    type: float
+    vlen: fft_len
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [800, 404.0]
     rotation: 0
     state: enabled
 - name: blocks_stream_to_vector_0
@@ -149,14 +246,14 @@ blocks:
     comment: ''
     maxoutbuf: '0'
     minoutbuf: '0'
-    num_items: fft_length
+    num_items: fft_len
     type: complex
     vlen: '1'
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [320, 324]
+    coordinate: [392, 208.0]
     rotation: 0
     state: enabled
 - name: control_ip
@@ -199,19 +296,19 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    fft_size: fft_length
+    fft_size: fft_len
     forward: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
     nthreads: '1'
     shift: 'True'
     type: complex
-    window: window.blackmanharris(fft_length)
+    window: window.blackmanharris(fft_len)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [648, 292]
+    coordinate: [768, 172.0]
     rotation: 0
     state: enabled
 - name: import_0
@@ -244,6 +341,32 @@ blocks:
     coordinate: [200, 4]
     rotation: 0
     state: enabled
+- name: virtual_sink_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: mag_sqrd
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1208, 204.0]
+    rotation: 0
+    state: true
+- name: virtual_source_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: mag_sqrd
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [96, 452.0]
+    rotation: 0
+    state: true
 - name: xmlrpc_serv_ip
   id: xmlrpc_server
   parameters:
@@ -270,12 +393,12 @@ blocks:
     pass_tags: 'True'
     timeout: '100'
     type: float
-    vlen: fft_length
+    vlen: fft_len
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1384, 300]
+    coordinate: [1416, 412.0]
     rotation: 0
     state: enabled
 - name: zeromq_sub_source_0
@@ -297,7 +420,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [104, 308]
+    coordinate: [144, 180.0]
     rotation: 0
     state: enabled
 - name: zmq_in_ip
@@ -370,12 +493,18 @@ blocks:
     state: enabled
 
 connections:
-- [blocks_complex_to_mag_squared_0, '0', blocks_integrate_xx_0, '0']
+- [blocks_complex_to_mag_squared_0, '0', virtual_sink_0, '0']
 - [blocks_integrate_xx_0, '0', blocks_nlog10_ff_0, '0']
 - [blocks_keep_one_in_n_0, '0', fft_vxx_0, '0']
+- [blocks_moving_average_xx_0, '0', blocks_selector_0_0, '0']
+- [blocks_moving_average_xx_0_0, '0', blocks_selector_0_0, '1']
 - [blocks_nlog10_ff_0, '0', zeromq_pub_sink_0, '0']
+- [blocks_selector_0, '0', blocks_moving_average_xx_0, '0']
+- [blocks_selector_0, '1', blocks_moving_average_xx_0_0, '0']
+- [blocks_selector_0_0, '0', blocks_integrate_xx_0, '0']
 - [blocks_stream_to_vector_0, '0', blocks_keep_one_in_n_0, '0']
 - [fft_vxx_0, '0', blocks_complex_to_mag_squared_0, '0']
+- [virtual_source_0, '0', blocks_selector_0, '0']
 - [zeromq_sub_source_0, '0', blocks_stream_to_vector_0, '0']
 
 metadata:

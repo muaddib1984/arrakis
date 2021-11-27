@@ -5,7 +5,7 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: Guild Navigator39
+# Title: Guild Navigator
 # Author: muaddib
 # Description: remote visualizatino for space folder application
 # GNU Radio version: 3.9.4.0
@@ -46,12 +46,12 @@ import numpy as np
 
 from gnuradio import qtgui
 
-class guild_navigator39(gr.top_block, Qt.QWidget):
+class guild_navigator(gr.top_block, Qt.QWidget):
 
-    def __init__(self, control_ip='127.0.0.1', control_port=8002, rf_bw=10e6, rf_freq=750e6, rf_gain=50.0, samp_rate=10e6, zmq_in_ip='127.0.0.1', zmq_in_port=5001):
-        gr.top_block.__init__(self, "Guild Navigator39", catch_exceptions=True)
+    def __init__(self, control_ip='127.0.0.1', control_port=8002, rf_bw=10e6, rf_freq=750e6, rf_gain=20.0, samp_rate=20e6, zmq_in_ip='127.0.0.1', zmq_in_port=5001):
+        gr.top_block.__init__(self, "Guild Navigator", catch_exceptions=True)
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Guild Navigator39")
+        self.setWindowTitle("Guild Navigator")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -69,7 +69,7 @@ class guild_navigator39(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "guild_navigator39")
+        self.settings = Qt.QSettings("GNU Radio", "guild_navigator")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -141,9 +141,9 @@ class guild_navigator39(gr.top_block, Qt.QWidget):
         for c in range(4, 6):
             self.top_grid_layout.setColumnStretch(c, 1)
         # Create the options list
-        self._samp_rate_gui_options = [1000000.0, 5000000.0, 10000000.0, 20000000.0, 40000000.0]
+        self._samp_rate_gui_options = [1024000.0, 1536000.0, 1792000.0, 1920000.0, 2048000.0, 2160000.0, 2560000.0, 2880000.0, 3200000.0, 5000000.0, 10000000.0, 15000000.0, 20000000.0, 25000000.0, 30000000.0, 35000000.0, 40000000.0, 45000000.0, 50000000.0, 55000000.0]
         # Create the labels list
-        self._samp_rate_gui_labels = ['1Msps', '5Msps', '5Msps', '20Msps', '40Msps']
+        self._samp_rate_gui_labels = ['1.02MHz', '1.54MHz', '1.79MHz', '1.92MHz', '2.05MHz', '2.16MHz', '2.56MHz', '2.88MHz', '3.2MHz', '5.0MHz', '10.0MHz', '15.0MHz', '20MHz', '25.0MHz', '30.0MHz', '35.0MHz', '40.0MHz', '45.0MHz', '50.0MHz', '55.0MHz']
         # Create the combo box
         self._samp_rate_gui_tool_bar = Qt.QToolBar(self)
         self._samp_rate_gui_tool_bar.addWidget(Qt.QLabel("SAMPLE RATE" + ": "))
@@ -175,9 +175,9 @@ class guild_navigator39(gr.top_block, Qt.QWidget):
         for c in range(0, 2):
             self.top_grid_layout.setColumnStretch(c, 1)
         # Create the options list
-        self._rf_bw_gui_options = [1000000.0, 1920000.0, 5000000.0, 10000000.0, 20000000.0]
+        self._rf_bw_gui_options = [1024000.0, 1536000.0, 1792000.0, 1920000.0, 2048000.0, 2160000.0, 2560000.0, 2880000.0, 3200000.0, 5000000.0, 10000000.0, 15000000.0, 20000000.0, 25000000.0, 30000000.0, 35000000.0, 40000000.0, 45000000.0, 50000000.0, 55000000.0]
         # Create the labels list
-        self._rf_bw_gui_labels = ['1Msps', '1.92Msps', '5Msps', '10Msps', '20Msps']
+        self._rf_bw_gui_labels = ['1.02MHz', '1.54MHz', '1.79MHz', '1.92MHz', '2.05MHz', '2.16MHz', '2.56MHz', '2.88MHz', '3.2MHz', '5.0MHz', '10.0MHz', '15.0MHz', '20MHz', '25.0MHz', '30.0MHz', '35.0MHz', '40.0MHz', '45.0MHz', '50.0MHz', '55.0MHz']
         # Create the combo box
         self._rf_bw_gui_tool_bar = Qt.QToolBar(self)
         self._rf_bw_gui_tool_bar.addWidget(Qt.QLabel("RF BANDWIDTH" + ": "))
@@ -239,7 +239,7 @@ class guild_navigator39(gr.top_block, Qt.QWidget):
         # Create the options list
         self._avg_options = [0, 1]
         # Create the labels list
-        self._avg_labels = ['AVERAGE', 'RAW']
+        self._avg_labels = ['RAW', 'AVERAGED']
         # Create the combo box
         self._avg_tool_bar = Qt.QToolBar(self)
         self._avg_tool_bar.addWidget(Qt.QLabel("AVERAGE/RAW" + ": "))
@@ -266,7 +266,7 @@ class guild_navigator39(gr.top_block, Qt.QWidget):
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "guild_navigator39")
+        self.settings = Qt.QSettings("GNU Radio", "guild_navigator")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -388,7 +388,7 @@ class guild_navigator39(gr.top_block, Qt.QWidget):
     def set_avg(self, avg):
         self.avg = avg
         self._avg_callback(self.avg)
-        self.xmlrpc_client_0_0_0_0_0_0_0.set_avg(self.avg)
+        self.xmlrpc_client_0_0_0_0_0_0_0.set_avg_on_off(self.avg)
 
 
 
@@ -408,10 +408,10 @@ def argument_parser():
         "-f", "--rf-freq", dest="rf_freq", type=eng_float, default=eng_notation.num_to_str(float(750e6)),
         help="Set RF FREQUENCY [default=%(default)r]")
     parser.add_argument(
-        "-g", "--rf-gain", dest="rf_gain", type=eng_float, default=eng_notation.num_to_str(float(50.0)),
+        "-g", "--rf-gain", dest="rf_gain", type=eng_float, default=eng_notation.num_to_str(float(20.0)),
         help="Set RF GAIN [default=%(default)r]")
     parser.add_argument(
-        "-s", "--samp-rate", dest="samp_rate", type=eng_float, default=eng_notation.num_to_str(float(10e6)),
+        "-s", "--samp-rate", dest="samp_rate", type=eng_float, default=eng_notation.num_to_str(float(20e6)),
         help="Set SAMPLE RATE [default=%(default)r]")
     parser.add_argument(
         "-z", "--zmq-in-ip", dest="zmq_in_ip", type=str, default='127.0.0.1',
@@ -419,7 +419,7 @@ def argument_parser():
     return parser
 
 
-def main(top_block_cls=guild_navigator39, options=None):
+def main(top_block_cls=guild_navigator, options=None):
     if options is None:
         options = argument_parser().parse_args()
 
