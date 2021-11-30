@@ -99,7 +99,7 @@ USAGE:
 
 RUNNING:
 From your local host, establish an ssh tunnel with port forwarding:
-ssh -L 5001:localhost:5001 -L 8000:localhost:8000 -L 8001:localhost:8001
+ssh -L 5001:localhost:5001 -L 8000:localhost:8000 -L 8001:localhost:8001 <remoteuser>@<remoteipaddress>
 
 On your remote host, start the appropriate STILLSUIT source for your SDR 
 (or comparable I/Q source) and start Space Folder.
