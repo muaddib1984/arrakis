@@ -19,11 +19,11 @@ Supported SDR's are:
  - Ettus Research USRP  
  - LimeSDR  
  - RTL-SDR  
-...
+
 
  *** 
 
-...
+
 
 
     +-------------------------------+        +----------------+
@@ -67,6 +67,7 @@ The default parameters for STILLSUIT, SPACEFOLDER and GUILD NAVIGATOR will work
 #### Space Folder Help Menu:
 ```
     $ python3 space_folder.py -h
+
     usage: space_folder.py [-h] [-x CONTROL_IP] [-X CONTROL_PORT] [-s SAMP_RATE] [-z ZMQ_IN_IP] [-o ZMQ_OUT_IP] [-O ZMQ_OUT_PORT]
 
     remote ingest and decimation for low bw link
@@ -126,13 +127,15 @@ On your remote host, start the appropriate STILLSUIT source for your SDR
 On your Local Host, start Guild Navigator.
 
 You will see the spectrum for the default 20MHz (works with UHD/LimeSDR/siggen)
+![GUI screenshot](https://github.com/muaddib1984/arrakis/blob/main/flowgraph_images/arrakis_spectrum.png>
 
 #### **NOTE:**
 Space Folder and Guild Navigator are configured for wideband visualization and have
 a default sampling rate of 20Msps. If you are using an RTLSDR, change the Sample Rate
-for Space Folder and Guild Navigator from the command line using:
-./space_folder -s 2e6
-./guild_navigator.py -s 2e6
+for Space Folder and Guild Navigator from the command line using:   
+```./space_folder -s 2e6```  
+```./guild_navigator.py -s 2e6```
+
 The STILLSUIT source for RTLSDR is set by default to 2Msps.
 
 ## Future Work:
