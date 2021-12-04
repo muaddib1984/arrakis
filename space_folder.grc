@@ -41,7 +41,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [344, 348.0]
+    coordinate: [328, 348.0]
     rotation: 0
     state: enabled
 - name: fft_len
@@ -53,7 +53,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 292]
+    coordinate: [8, 340.0]
     rotation: 0
     state: enabled
 - name: samp_ratio
@@ -65,7 +65,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 180]
+    coordinate: [8, 212.0]
     rotation: 0
     state: enabled
 - name: vec_per_sec
@@ -77,7 +77,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [584, 124.0]
+    coordinate: [696, 124.0]
     rotation: 0
     state: enabled
 - name: blocks_complex_to_mag_squared_0
@@ -93,7 +93,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1000, 204.0]
+    coordinate: [1208, 196.0]
     rotation: 0
     state: enabled
 - name: blocks_integrate_xx_0
@@ -131,7 +131,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [568, 196.0]
+    coordinate: [664, 188.0]
     rotation: 0
     state: enabled
 - name: blocks_moving_average_xx_0
@@ -253,7 +253,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 208.0]
+    coordinate: [392, 204.0]
     rotation: 0
     state: enabled
 - name: control_ip
@@ -308,7 +308,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [768, 172.0]
+    coordinate: [952, 164.0]
     rotation: 0
     state: enabled
 - name: import_0
@@ -321,7 +321,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 244]
+    coordinate: [8, 276.0]
     rotation: 0
     state: enabled
 - name: samp_rate
@@ -351,7 +351,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [1208, 204.0]
+    coordinate: [1448, 196.0]
     rotation: 0
     state: true
 - name: virtual_source_0
@@ -378,7 +378,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 116]
+    coordinate: [8, 132.0]
     rotation: 0
     state: enabled
 - name: zeromq_pub_sink_0
@@ -420,7 +420,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [144, 180.0]
+    coordinate: [152, 172.0]
     rotation: 0
     state: enabled
 - name: zmq_in_ip

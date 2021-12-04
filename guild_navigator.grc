@@ -59,7 +59,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [888, 380]
+    coordinate: [952, 412.0]
     rotation: 0
     state: enabled
 - name: fft_length
@@ -71,39 +71,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 292]
+    coordinate: [8, 324.0]
     rotation: 0
     state: enabled
-- name: rf_bw_gui
-  id: variable_qtgui_chooser
-  parameters:
-    comment: ''
-    gui_hint: 0,2,1,2
-    label: RF BANDWIDTH
-    label0: 1Msps
-    label1: 1.92Msps
-    label2: 5Msps
-    label3: 10Msps
-    label4: 20Msps
-    labels: '[]'
-    num_opts: '5'
-    option0: 1e6
-    option1: 1.92e6
-    option2: 5e6
-    option3: 10e6
-    option4: 20e6
-    options: '[0, 1, 2]'
-    orient: Qt.QVBoxLayout
-    type: real
-    value: rf_bw
-    widget: combo_box
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [416, 284]
-    rotation: 0
-    state: disabled
 - name: rf_bw_gui
   id: variable_qtgui_chooser
   parameters:
@@ -136,7 +106,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 324.0]
+    coordinate: [416, 412.0]
     rotation: 0
     state: enabled
 - name: rf_freq_gui
@@ -192,57 +162,6 @@ blocks:
     label2: 5Msps
     label3: 20Msps
     label4: 40Msps
-    labels: '[]'
-    num_opts: '5'
-    option0: 1e6
-    option1: 5e6
-    option2: 10e6
-    option3: 20e6
-    option4: 40e6
-    options: '[0, 1, 2]'
-    orient: Qt.QVBoxLayout
-    type: real
-    value: samp_rate
-    widget: combo_box
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [552, 284]
-    rotation: 0
-    state: disabled
-- name: samp_rate_gui
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: Sample Rate
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: 200e3
-    step: 500e3
-    stop: 56e6
-    value: samp_rate
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [544, 356.0]
-    rotation: 0
-    state: disabled
-- name: samp_rate_gui
-  id: variable_qtgui_chooser
-  parameters:
-    comment: ''
-    gui_hint: 1,2,1,2
-    label: SAMPLE RATE
-    label0: 1Msps
-    label1: 5Msps
-    label2: 5Msps
-    label3: 20Msps
-    label4: 40Msps
     labels: '[''1.02MHz'', ''1.54MHz'', ''1.79MHz'', ''1.92MHz'', ''2.05MHz'', ''2.16MHz'',
       ''2.56MHz'', ''2.88MHz'', ''3.2MHz'', ''5.0MHz'', ''10.0MHz'', ''15.0MHz'',''20MHz'',
       ''25.0MHz'', ''30.0MHz'', ''35.0MHz'', ''40.0MHz'', ''45.0MHz'', ''50.0MHz'',
@@ -264,7 +183,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [544, 324.0]
+    coordinate: [592, 412.0]
     rotation: 0
     state: enabled
 - name: samp_ratio
@@ -276,7 +195,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 180]
+    coordinate: [8, 196.0]
     rotation: 0
     state: enabled
 - name: vec_per_sec
@@ -288,7 +207,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 356]
+    coordinate: [8, 388.0]
     rotation: 0
     state: enabled
 - name: vps
@@ -318,7 +237,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 380]
+    coordinate: [768, 412.0]
     rotation: 0
     state: enabled
 - name: control_ip
@@ -365,7 +284,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 244]
+    coordinate: [8, 260.0]
     rotation: 0
     state: enabled
 - name: qtgui_vector_sink_f_0
@@ -570,7 +489,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [552, 540]
+    coordinate: [592, 540.0]
     rotation: 0
     state: enabled
 - name: xmlrpc_client_0_0_0_0_0
@@ -586,7 +505,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [552, 636]
+    coordinate: [592, 652.0]
     rotation: 0
     state: enabled
 - name: xmlrpc_client_0_0_0_0_0_0
@@ -602,7 +521,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [704, 636]
+    coordinate: [768, 668.0]
     rotation: 0
     state: enabled
 - name: xmlrpc_client_0_0_0_0_0_0_0
@@ -618,7 +537,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [888, 636]
+    coordinate: [952, 668.0]
     rotation: 0
     state: enabled
 - name: xmlrpc_serv_ip
