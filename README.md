@@ -127,7 +127,7 @@ On your remote host, start the appropriate STILLSUIT source for your SDR
 On your Local Host, start Guild Navigator.
 
 You will see the spectrum for the default 20MHz (works with UHD/LimeSDR/siggen)
-![GUI screenshot](https://github.com/muaddib1984/arrakis/blob/main/flowgraph_images/arrakis_spectrum.png>
+![GUI screenshot](https://github.com/muaddib1984/arrakis/blob/main/flowgraph_images/arrakis_spectrum.png)
 
 #### **NOTE:**
 Space Folder and Guild Navigator are configured for wideband visualization and have
